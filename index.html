@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Send Email</title>
+    <title>Fast Link Sender</title>
+    <link rel="stylesheet" href="styles.css">
     <!-- Load the EmailJS library -->
     <script type="text/javascript" src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
     <script type="text/javascript">
@@ -24,7 +25,6 @@
             // Send the email using the service ID and template ID you set up in EmailJS
             emailjs.send("service_fzs7s4h", "template_t8v6xep", params)
                 .then(function(response) {
-                    alert("Success");
                     console.log('SUCCESS!', response.status, response.text);
                     alert('Email sent successfully!');
                 }, function(error) {
@@ -35,13 +35,14 @@
     </script>
 </head>
 <body>
-    <h1>Send Email</h1>
+    <h1>Fast Link Sender</h1>
     <form id="emailForm" class="buttons" onsubmit="sendEmail(event);">
-        Your Name: <textarea id="userName" name="userName"></textarea><br>
-        To: <textarea id="toEmail" name="toEmail"></textarea><br>
-        Message: <textarea id="message" name="message"></textarea><br>
-        Link to Event: <textarea id="url" name="url"></textarea><br>
+        Your Name (Will show in Email): <input id="userName" name="userName" required></input><br>
+        Emails (separated by commas): <textarea id="toEmail" name="toEmail" required></textarea><br>
+        Message (optional): <textarea id="message" name="message"></textarea><br>
+        Link to Event: <input id="url" name="url" required></input><br>
         <button type="submit">Send Email</button>
     </form>
 </body>
 </html>
+
