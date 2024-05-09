@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Send Email</title>
+    <!-- Load the EmailJS library -->
+    <script type="text/javascript" src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
+    <script type="text/javascript">
+        // Initialize EmailJS with your user ID
+        (function(){
+            emailjs.init("RVruVyYrhLp-bJRGp"); // Replace 'your-user-id' with your actual EmailJS user ID
+        })();
+
+        function sendEmail() {
+            event.preventDefault();  // Prevent the default form submission behavior
+
+            // Collect data from form
+            var params = {
+                userName: document.getElementById('userName').value,
+                toEmail: document.getElementById('toEmail').value,
+                message: document.getElementById('message').value,
+                url: document.getElementById('url').value
+            };
+
+            // Send the email using the service ID and template ID you set up in EmailJS
+            emailjs.send("service_fzs7s4h", "template_t8v6xep", params)
+                .then(function(response) {
+                    alert("Success");
+                    console.log('SUCCESS!', response.status, response.text);
+                    alert('Email sent successfully!');
+                }, function(error) {
+                    console.log('FAILED...', error);
+                    alert('Failed to send email. Check console for more details.');
+                });
+        }
+    </script>
+</head>
+<body>
+    <h1>Send Email</h1>
+    <form id="emailForm" class="buttons" onsubmit="sendEmail(event);">
+        Your Name: <textarea id="userName" name="userName"></textarea><br>
+        To: <textarea id="toEmail" name="toEmail"></textarea><br>
+        Message: <textarea id="message" name="message"></textarea><br>
+        Link to Event: <textarea id="url" name="url"></textarea><br>
+        <button type="submit">Send Email</button>
+    </form>
+</body>
+</html>
